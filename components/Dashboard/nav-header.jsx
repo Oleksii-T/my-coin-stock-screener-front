@@ -12,10 +12,28 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
 
-export function NavHeader({ teams }) {
+export function NavHeader() {
   const { isMobile } = useSidebar();
+  const teams = [
+    {
+      name: 'Acme Inc',
+      logo: GalleryVerticalEnd,
+      plan: 'Enterprise',
+    },
+    {
+      name: 'Acme Corp.',
+      logo: AudioWaveform,
+      plan: 'Startup',
+    },
+    {
+      name: 'Evil Corp.',
+      logo: Command,
+      plan: 'Free',
+    },
+  ];
   const [activeTeam, setActiveTeam] = React.useState(teams[0]);
 
   return (

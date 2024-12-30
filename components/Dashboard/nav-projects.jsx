@@ -1,7 +1,7 @@
 'use client';
 
 import { Folder, Forward, MoreHorizontal, Trash2 } from 'lucide-react';
-
+import { Frame, Map, PieChart } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,8 +19,25 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
-export function NavProjects({ projects }) {
+export function NavProjects() {
   const { isMobile } = useSidebar();
+  const projects = [
+    {
+      name: 'Design Engineering',
+      url: '#',
+      icon: Frame,
+    },
+    {
+      name: 'Sales & Marketing',
+      url: '#',
+      icon: PieChart,
+    },
+    {
+      name: 'Travel',
+      url: '#',
+      icon: Map,
+    },
+  ];
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
