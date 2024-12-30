@@ -5,7 +5,7 @@ export default function Header() {
     <header className="bg-blue-600 text-white">
       <nav className="container mx-auto flex items-center justify-between py-4 px-6">
         <Link href="/" className="hover:text-blue-200 transition">
-          <h1 className="text-2xl font-bold">My App</h1>
+          <h1 className="text-2xl font-bold">MCSS [FRONT]</h1>
         </Link>
         <ul className="flex space-x-6">
           <li></li>

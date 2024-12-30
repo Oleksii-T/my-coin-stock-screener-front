@@ -1,30 +1,22 @@
-"use client";
+'use client';
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useForm } from "@/hooks/use-form";
-import fetcher from "@/lib/fetcher";
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { useForm } from '@/hooks/use-form';
+import { redirect } from 'next/navigation';
 
 export default function LoginPage() {
-  const onSubmit = async (formData) => {
-    console.log("onSubmit:", formData);
-    const response = await fetcher.post("/auth/login", formData);
-
-    console.log("Response:", response);
-
-    if (!response.ok) {
-      throw new Error("Invalid email or password.");
-    }
-
-    const data = await response.json();
-    console.log("Login successful:", data);
-    // Save token or perform further actions
+  const initialValues = { email: '', password: '' };
+  const formUrl = 'login';
+  const onSuccess = async responseData => {
+    redirect('/dashboard');
   };
 
-  const { values, handleChange, handleSubmit, isLoading, error } = useForm(
-    { email: "", password: "" },
-    onSubmit
-  );
+  const { formData, handleChange, handleSubmit, isLoading, formErrors } = useForm({
+    initialValues,
+    formUrl,
+    onSuccess,
+  });
 
   return (
     <div className="bg-gray-100">
@@ -32,8 +24,7 @@ export default function LoginPage() {
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-8">Log In</h2>
           <p className="text-lg text-gray-700 text-center mb-12">
-            Have a question or need assistance? Fill out the form below and
-            we'll get back to you as soon as possible.
+            Have a question or need assistance? Fill out the form below and we'll get back to you as soon as possible.
           </p>
 
           <div className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
@@ -44,6 +35,7 @@ export default function LoginPage() {
                 name="email"
                 onChange={handleChange}
                 placeholder="example@mail.com"
+                error={formErrors?.email}
               ></Input>
               <Input
                 type="password"
@@ -51,6 +43,7 @@ export default function LoginPage() {
                 name="password"
                 onChange={handleChange}
                 placeholder="******"
+                error={formErrors?.password}
               ></Input>
 
               <div className="text-center">
