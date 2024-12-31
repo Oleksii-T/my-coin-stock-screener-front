@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import fetcher from '@/lib/fetcher';
+import { toast } from 'react-toastify';
 
 export function useForm({ initialValues, onSubmit, onSuccess, formUrl }) {
   const [formData, setFormData] = useState(initialValues);
@@ -25,28 +26,16 @@ export function useForm({ initialValues, onSubmit, onSuccess, formUrl }) {
       const responseData = await response.json();
 
       if (response.status === 422) {
-        parseErrors(responseData.errors);
-        return;
+        // toast.error(responseData.message);
+        setFormErrors(responseData.data);
       } else if (response.status !== 200) {
-        //TODO: show tost error
-        console.log('TOAST GENERAL ERROR'); //! LOG
-        return;
+        toast(responseData.message || 'Server Error');
       } else {
         await onSuccess(responseData);
       }
     }
 
     setIsLoading(false);
-  };
-
-  const parseErrors = responseErrors => {
-    const errors = {};
-
-    responseErrors.forEach(error => {
-      errors[error.path] = error.msg;
-    });
-
-    setFormErrors(errors);
   };
 
   return {

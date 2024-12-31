@@ -1,7 +1,8 @@
 'use client';
 
-import './globals.css';
+import '@/app/dashboard/globals.css';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,10 +17,11 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased `}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
         <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
           <div className="w-full max-w-sm">{children}</div>
         </div>
+        <ToastContainer theme="dark" autoClose={2500} />
       </body>
     </html>
   );

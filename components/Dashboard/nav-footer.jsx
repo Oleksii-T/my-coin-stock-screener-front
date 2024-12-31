@@ -23,7 +23,7 @@ export function NavFooter() {
 
   const logOut = async () => {
     const response = await fetcher.post('logout');
-    redirect('/login');
+    redirect('/auth/login');
   };
 
   return (
