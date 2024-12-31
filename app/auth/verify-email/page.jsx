@@ -60,7 +60,7 @@ export default function LoginPage() {
                   name="code"
                   id="code"
                   type="text"
-                  placeholder="*****"
+                  placeholder="******"
                   error={formErrors?.code}
                   required
                 />
