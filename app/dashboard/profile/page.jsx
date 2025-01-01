@@ -3,11 +3,14 @@
 import { useEffect } from 'react';
 import { useBreadcrumb } from '@/context/BreadcrumbContext';
 
-export default function DashboardPage() {
+export default function ProfilePage() {
   const { setBreadcrumbs } = useBreadcrumb();
 
   useEffect(() => {
-    setBreadcrumbs([{ title: 'Dashboard', link: '/dashboard' }]);
+    setBreadcrumbs([
+      { title: 'Dashboard', link: '/dashboard' },
+      { title: 'Profile', link: '/dashboard/profile' },
+    ]);
   }, []);
 
   return (

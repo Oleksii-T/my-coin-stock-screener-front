@@ -6,8 +6,8 @@ import { useForm } from '@/hooks/use-form';
 import { redirect } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import Link from 'next/link';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const initialValues = { email: '', password: '' };
